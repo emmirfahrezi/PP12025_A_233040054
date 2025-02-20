@@ -14,7 +14,6 @@ public class NodeMain2 {
         n2.setNext(n3);
         n3.setNext(n4);
         n4.setNext(n5);
-        n5.setNext(null);
 
         // menampilknode dengan pointer p
         node p = n1;
