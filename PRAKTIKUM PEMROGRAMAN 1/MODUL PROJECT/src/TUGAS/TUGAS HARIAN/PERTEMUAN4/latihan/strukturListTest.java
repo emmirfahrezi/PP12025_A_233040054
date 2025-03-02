@@ -1,12 +1,13 @@
-package PERTEMUAN3;
+package PERTEMUAN4.latihan;
 
-public class ListTes {
+public class strukturListTest {
     public static void main(String[] args) {
         strukturList list = new strukturList();
-        list.addHead(1);
-        list.addHead(4);
+        list.addTail(3);
+        list.addTail(4);
+        list.addMid(7, 2);
+        list.addMid(8, 2);
         list.addHead(5);
-        list.addHead(7);
 
 
         System.out.println("Elemen: ");
