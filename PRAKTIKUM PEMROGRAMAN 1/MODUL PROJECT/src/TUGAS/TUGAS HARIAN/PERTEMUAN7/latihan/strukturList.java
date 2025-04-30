@@ -1,6 +1,4 @@
-package PERTEMUAN6.latihan;
-
-import org.w3c.dom.Node;
+package PERTEMUAN7.latihan;
 
 public class strukturList {
     private node HEAD;
@@ -9,7 +7,7 @@ public class strukturList {
         return HEAD == null;
     }
 
-    public void addTail(int data){
+    public void addTail(Matakuliah data){
         node posNode = null, currNode = null;
         
         node newNode = new node(data);
@@ -29,14 +27,20 @@ public class strukturList {
     }
 
     public void displayElement(){
-        node curNode = HEAD;
-        while(curNode != null){
-            System.out.printf(curNode.getData()+ " ");
-            curNode = curNode.getNext();
+        if (isEmpty()){
+            System.out.println("List Kosong");
+        }
+        else{
+            node curNode = HEAD;
+            while(curNode != null){
+                System.out.printf("Matakuliah: "+curNode.getData().getKode()+ ", " + curNode.getData().getNama() + ", " + curNode.getData().getSks() + "\n");
+                curNode = curNode.getNext();
+            }
+            System.out.println();
         }
     }
 
-    public void addHead(int data){
+    public void addHead(Matakuliah data){
         node newNode = new node(data);
         
         if (isEmpty()){
@@ -48,7 +52,7 @@ public class strukturList {
         }
     }
     
-    public void addMid(int data, int position) {
+    public void addMid(Matakuliah data, int position) {
         node newNode = new node(data);
         node curNode = HEAD;
         node posNode = null;
@@ -113,41 +117,5 @@ public class strukturList {
             }
         }
     }
-
-    public void removeMid(int e) {
-        node preNode = new node(0);
-        node tempNode;
-        int i;
-        boolean ketemu;
     
-        if (isEmpty()) {
-            System.out.println("Elemen list kosong");
-        } else {
-            ketemu = false;
-            i = 1;
-            tempNode = HEAD;
-            while (tempNode.getNext() != null && !ketemu) {
-                if (tempNode.getNilai() == e) {
-                    ketemu = true;
-                } else {
-                    preNode = tempNode;
-                    tempNode = tempNode.getNext();
-                    i++;
-                }
-            }
-    
-            if (ketemu == true) {
-                if (i == 1)
-                    HEAD = null;
-                else {
-                    preNode.setNext(tempNode.getNext());
-                    dispose(tempNode);
-                }
-            }
-        }
-    }
-    
-    
-    
-
 }

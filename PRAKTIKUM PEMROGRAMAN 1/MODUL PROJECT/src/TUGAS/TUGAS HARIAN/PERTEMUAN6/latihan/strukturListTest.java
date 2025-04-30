@@ -19,12 +19,5 @@ public class strukturListTest {
 
         System.out.println("\n");
         list.displayElement();
-
-    
-
-
-
-
-
     }
 }
