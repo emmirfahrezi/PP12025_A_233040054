@@ -1,5 +1,7 @@
 package PERTEMUAN7.latihan;
 
+import org.w3c.dom.Node;
+
 public class strukturList {
     private node HEAD;
 
@@ -7,7 +9,23 @@ public class strukturList {
         return HEAD == null;
     }
 
-    public void addTail(Matakuliah data){
+    public boolean find(int data){
+        node curNode = HEAD;
+        boolean ketemu = false;
+         while (curNode != null && !ketemu){
+            if (curNode.getData() == data){
+                ketemu = true;
+            }
+            else{
+                curNode = curNode.getNext();
+            }
+        }
+        return ketemu;
+    }
+
+    
+
+    public void addTail(int data){
         node posNode = null, currNode = null;
         
         node newNode = new node(data);
@@ -26,21 +44,38 @@ public class strukturList {
         
     }
 
-    public void displayElement(){
-        if (isEmpty()){
-            System.out.println("List Kosong");
+    public int size() {
+        node curNode = HEAD; 
+        int jumlah = 0;
+    
+        while (curNode != null) {
+            jumlah = jumlah + 1; 
+            curNode = curNode.getNext(); 
         }
-        else{
-            node curNode = HEAD;
-            while(curNode != null){
-                System.out.printf("Matakuliah: "+curNode.getData().getKode()+ ", " + curNode.getData().getNama() + ", " + curNode.getData().getSks() + "\n");
-                curNode = curNode.getNext();
-            }
-            System.out.println();
+    
+        return jumlah; 
+    }
+
+    public void clear() {
+        while (HEAD != null) {
+            node temp = HEAD; // Simpan referensi ke node saat ini
+            HEAD = HEAD.getNext(); // Pindahkan HEAD ke node berikutnya
+            temp = null; // Hapus node saat ini
+        }
+        System.out.println("List Kosong");
+    }
+
+   
+
+    public void displayElement(){
+        node curNode = HEAD;
+        while(curNode != null){
+            System.out.printf(curNode.getData()+ " ");
+            curNode = curNode.getNext();
         }
     }
 
-    public void addHead(Matakuliah data){
+    public void addHead(int data){
         node newNode = new node(data);
         
         if (isEmpty()){
@@ -52,7 +87,7 @@ public class strukturList {
         }
     }
     
-    public void addMid(Matakuliah data, int position) {
+    public void addMid(int data, int position) {
         node newNode = new node(data);
         node curNode = HEAD;
         node posNode = null;
@@ -117,5 +152,41 @@ public class strukturList {
             }
         }
     }
+
+    public void removeMid(int e) {
+        node preNode = new node(0);
+        node tempNode;
+        int i;
+        boolean ketemu;
     
+        if (isEmpty()) {
+            System.out.println("Elemen list kosong");
+        } else {
+            ketemu = false;
+            i = 1;
+            tempNode = HEAD;
+            while (tempNode.getNext() != null && !ketemu) {
+                if (tempNode.getNilai() == e) {
+                    ketemu = true;
+                } else {
+                    preNode = tempNode;
+                    tempNode = tempNode.getNext();
+                    i++;
+                }
+            }
+    
+            if (ketemu == true) {
+                if (i == 1)
+                    HEAD = null;
+                else {
+                    preNode.setNext(tempNode.getNext());
+                    dispose(tempNode);
+                }
+            }
+        }
+    }
+    
+    
+    
+
 }
